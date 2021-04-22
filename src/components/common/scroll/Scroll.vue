@@ -35,13 +35,11 @@ export default {
     });
     //2.监听滚动位置
     this.scroll.on("scroll", (position) => {
-      //console.log(position);
       this.$emit("scroll", position);
     });
-    //3.监听上拉事件
+    //3.监听scroll滚动到底部
     this.scroll.on("pullingUp", () => {
-      //console.log('上拉加载更多');
-      this.$emit("pullingUp");
+      this.$emit('pullingUp')
     });
   },
   methods: {
@@ -50,6 +48,12 @@ export default {
     },
     finishPullUp(){
       this.scroll.finishPullUp()
+    },
+    refresh(){
+    this.scroll && this.scroll.refresh()
+    },
+    getScrollY(){
+      return this.scroll ? this.scroll.y :0
     }
   },
 };
